@@ -1,6 +1,7 @@
 package br.com.financeiro.dao;
 
 import java.util.List;
+
 import org.junit.Ignore;
 import org.junit.Test;
 import br.com.financeiro.domain.Cidade;
@@ -10,14 +11,14 @@ public class CidadeDAOTest {
 	@Test
 	@Ignore
 	public void salvar() {
-		Long codigoEstado = 1L;
+		Long codigoEstado = 4L;
 		
 		EstadoDAO estadoDAO = new EstadoDAO();
 
 		Estado estado = estadoDAO.buscar(codigoEstado);
 
 		Cidade cidade = new Cidade();
-		cidade.setNome("Balneário");
+		cidade.setNome("BH");
 		cidade.setEstado(estado);
 
 		CidadeDAO cidadeDAO = new CidadeDAO();
@@ -43,7 +44,8 @@ public class CidadeDAOTest {
 	@Test
 	@Ignore
 	public void buscar(){
-		Long codigo = 7L;
+		Long codigo = 1L;
+		
 		
 		CidadeDAO cidadeDAO = new CidadeDAO();
 		Cidade cidade = cidadeDAO.buscar(codigo);

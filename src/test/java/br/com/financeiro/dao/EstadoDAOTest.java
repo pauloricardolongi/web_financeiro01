@@ -27,6 +27,22 @@ public class EstadoDAOTest {
 	}
 	
 	@Test
+	
+	public void merge() {
+		Estado estado = new Estado();
+		estado.setNome("Goias");
+		estado.setSigla("GO");
+		
+		Estado estado2 = new Estado();
+		estado2.setNome("Tocantins");
+		estado2.setSigla("TO");
+		
+		EstadoDAO estadoDAO = new EstadoDAO();
+		estadoDAO.merge(estado);
+		estadoDAO.merge(estado2);
+	}
+	
+	@Test
 	@Ignore
 	public void listar() {
 		EstadoDAO estadoDAO = new EstadoDAO();

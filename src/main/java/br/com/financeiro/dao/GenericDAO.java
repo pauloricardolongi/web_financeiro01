@@ -3,6 +3,7 @@ package br.com.financeiro.dao;
 
 
 import java.lang.reflect.ParameterizedType;
+
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -44,6 +45,25 @@ public class GenericDAO <Entidade> {
 		sessao.close();
 	}
 }
+	
+	public void merge(Entidade entidade) {
+		
+		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
+		Transaction transacao = null;
+
+		try {
+			transacao = sessao.beginTransaction();
+			sessao.merge(entidade);
+			transacao.commit();
+		} catch (RuntimeException erro) {
+			if (transacao != null) {
+				transacao.rollback();
+			}
+			throw erro;
+		} finally {
+			sessao.close();
+		}
+	}
 	
 
 @SuppressWarnings("unchecked")

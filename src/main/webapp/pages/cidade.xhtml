@@ -1,23 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-
->
-<h:head> 
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Estados</title>
-<h:outputStylesheet library="css" name="estilo.css"/> 
- </h:head>
-
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Cidades</title>
+	<h:outputStylesheet library="css" name="estilo.css"/> 
+</h:head>
 <h:body>
-
-<h:form>
-		<p:panel header="Lista de Estados">
-			<p:dataTable emptyMessage="Nenhum registro encontra"
+	<h:form>
+		<p:panel header="Lista de Cidades">
+			<p:dataTable emptyMessage="Nenhum registro encontrado."
 				paginator="true">
 				<f:facet name="header">
 					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();" />
@@ -35,20 +30,18 @@ xmlns:h="http://java.sun.com/jsf/html"
 		</p:panel>
 	</h:form>
 
-
-<p:dialog header="Estados - Cadastro" widgetVar="dialogo"
+	<p:dialog header="Cidades - Cadastro" widgetVar="dialogo"
 		draggable="false" resizable="false" modal="true" closable="false">
 		<h:form>
 			<h:panelGrid columns="2">
-			
 				<p:outputLabel value="Nome:" />
 				<p:inputText maxlength="50" size="30" />
 				
-				<p:outputLabel value="Sigla:" />
-			     <p:inputText maxlength="2" size="10"/> 
-			     
-				</h:panelGrid>				
-				
+				<p:outputLabel value="Estado:" />
+				<p:selectOneMenu filter="true">
+					<f:selectItem itemValue="" itemLabel="Selecione um estado" />
+				</p:selectOneMenu>
+			</h:panelGrid>
 
 			<h:panelGrid columns="2">
 				<p:commandButton value="Salvar" />
@@ -56,10 +49,5 @@ xmlns:h="http://java.sun.com/jsf/html"
 			</h:panelGrid>
 		</h:form>
 	</p:dialog>
-
-	
-
 </h:body>
-
-
 </html>

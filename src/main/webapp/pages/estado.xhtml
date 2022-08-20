@@ -7,6 +7,7 @@ xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 
 >
+
 <h:head> 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Estados</title>
@@ -22,13 +23,16 @@ xmlns:h="http://java.sun.com/jsf/html"
 			<p:dataTable emptyMessage="Nenhum registro encontra"
 				paginator="true">
 				<f:facet name="header">
-					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();" />
+					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();"
+					actionListener="#{estadoBean.novo()}"
+				 update=":formCadastro:pnCadastro"
+					 />
 				</f:facet>
 
 				<p:column headerText="Nome">
 				</p:column>
 
-				<p:column headerText="Estado">
+				<p:column headerText="Sigla">
 				</p:column>
 
 				<p:column headerText="Opções">
@@ -40,20 +44,22 @@ xmlns:h="http://java.sun.com/jsf/html"
 
 <p:dialog header="Estados - Cadastro" widgetVar="dialogo"
 		draggable="false" resizable="false" modal="true" closable="false">
-		<h:form>
-			<h:panelGrid columns="2">
+		<h:form id="formCadastro">
+			<h:panelGrid columns="2" id="pnCadastro">
 			
 				<p:outputLabel value="Nome:" />
-				<p:inputText maxlength="50" size="30" />
+				<p:inputText maxlength="50" size="30" value="#{estadoBean.estado.nome}"/>
 				
 				<p:outputLabel value="Sigla:" />
-			     <p:inputText maxlength="2" size="10"/> 
+			     <p:inputText maxlength="2" size="10" value="#{estadoBean.estado.sigla}"/>
+				 
 			     
 				</h:panelGrid>				
 				
 
 			<h:panelGrid columns="2">
-				<p:commandButton value="Salvar" actionListener="#{estadoBean.salvar()}" update=":mensagem"/>
+				<p:commandButton value="Salvar" actionListener="#{estadoBean.salvar()}"
+				 update=":mensagem :formCadastro:pnCadastro"/>
 				<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
 			</h:panelGrid>
 		</h:form>

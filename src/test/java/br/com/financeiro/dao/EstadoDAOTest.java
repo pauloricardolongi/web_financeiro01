@@ -2,7 +2,6 @@ package br.com.financeiro.dao;
 
 import java.util.List;
 
-
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -27,11 +26,11 @@ public class EstadoDAOTest {
 	}
 	
 	@Test
-	
+	@Ignore
 	public void merge() {
 		Estado estado = new Estado();
-		estado.setNome("Goias");
-		estado.setSigla("GO");
+		estado.setNome("Rondonia");
+		estado.setSigla("RD");
 		
 		Estado estado2 = new Estado();
 		estado2.setNome("Tocantins");

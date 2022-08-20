@@ -1,7 +1,5 @@
 package br.com.financeiro.dao;
 
-
-
 import java.lang.reflect.ParameterizedType;
 
 import java.util.List;

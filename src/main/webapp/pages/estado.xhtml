@@ -5,8 +5,9 @@ xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-
+	
 >
+
 
 <h:head> 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
@@ -16,12 +17,14 @@ xmlns:h="http://java.sun.com/jsf/html"
 
 <h:body>
 
-<p:growl  id="mensagem"  />  
+<p:growl  id="mensagem" />  
 <h:form>
 
 		<p:panel header="Lista de Estados">
 			<p:dataTable emptyMessage="Nenhum registro encontra"
-				paginator="true">
+				paginator="true" value="#{estadoBean.estados}" var="estado"
+				rows="6"
+				>
 				<f:facet name="header">
 					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();"
 					actionListener="#{estadoBean.novo()}"
@@ -29,13 +32,16 @@ xmlns:h="http://java.sun.com/jsf/html"
 					 />
 				</f:facet>
 
-				<p:column headerText="Nome">
+				<p:column headerText="Nome" sortBy="#{estado.nome}" filterBy="#{estado.nome}">
+				<h:outputText value="#{estado.nome}" />
 				</p:column>
 
-				<p:column headerText="Sigla">
+				<p:column headerText="Sigla" filterBy="#{estado.sigla}">
+				<h:outputText value="#{estado.sigla}" />
 				</p:column>
 
 				<p:column headerText="Opções">
+				
 				</p:column>
 			</p:dataTable>
 		</p:panel>

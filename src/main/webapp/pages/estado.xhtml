@@ -30,8 +30,10 @@ xmlns:h="http://java.sun.com/jsf/html"
 				<f:facet name="header">
 					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();"
 					actionListener="#{estadoBean.novo()}"
-				 update=":formCadastro:pnCadastro"
-					 />
+				 update=":formCadastro:pnCadastro" >
+	<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener"/>			 
+				 </p:commandButton>
+				 
 				</f:facet>
 
 				<p:column headerText="Nome" sortBy="#{estado.nome}" filterBy="#{estado.nome}">
@@ -56,6 +58,7 @@ icon="ui-icon-alert" />
 						update=":formCadastro:pnCadastro"
 						oncomplete="PF('dialogo').show();">
 						<f:attribute name="estadoSelecionado" value="#{estado}" />
+<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener"/>						
 					</p:commandButton>
 
 
@@ -80,10 +83,16 @@ icon="ui-icon-alert" />
 			<h:panelGrid columns="2" id="pnCadastro">
 			
 				<p:outputLabel value="Nome:" />
-				<p:inputText maxlength="50" size="30" value="#{estadoBean.estado.nome}"/>
+				<p:inputText maxlength="50" size="30" 
+				value="#{estadoBean.estado.nome}"
+				required="true"
+				requiredMessage="O campo 'Nome' é obrigatório"/>
 				
 				<p:outputLabel value="Sigla:" />
-			     <p:inputText maxlength="2" size="10" value="#{estadoBean.estado.sigla}"/>
+			     <p:inputText maxlength="2" size="10"
+			      value="#{estadoBean.estado.sigla}"
+			      required="true"
+				  requiredMessage="O campo 'Sigla' é obrigatório"/>
 				 
 			     
 				</h:panelGrid>				
@@ -92,7 +101,7 @@ icon="ui-icon-alert" />
 			<h:panelGrid columns="2">
 				<p:commandButton value="Salvar" actionListener="#{estadoBean.salvar()}"
 				 update=":mensagem :formCadastro:pnCadastro :formListagem:tabela"
-				 oncomplete="PF('dialogo').hide();"/>
+				 />
 				<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
 			</h:panelGrid>
 		</h:form>

@@ -82,7 +82,8 @@
 
 			<h:panelGrid columns="2">
 				<p:commandButton value="Salvar" actionListener="#{cidadeBean.salvar}"
-					update=":mensagem :formCadastro:painel :formListagem:tabela" />
+					update=":mensagem :formCadastro:painel :formListagem:tabela"
+					oncomplete="PF('dialogo').hide();" />
 				<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
 			</h:panelGrid>
 		</h:form>

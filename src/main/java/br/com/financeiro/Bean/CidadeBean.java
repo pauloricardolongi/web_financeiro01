@@ -1,11 +1,14 @@
 package br.com.financeiro.Bean;
 
+import java.awt.event.ActionEvent;
+
 import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.event.FacesEvent;
 
 import org.omnifaces.util.Messages;
 
@@ -68,6 +71,53 @@ public class CidadeBean implements Serializable {
 			erro.printStackTrace();
 		}
 	}
+	public void salvar() {
+		try {
+			CidadeDAO cidadeDAO = new CidadeDAO();
+			cidadeDAO.merge(cidade);
+
+			cidade = new Cidade();
+
+			EstadoDAO estadoDAO = new EstadoDAO();
+			estados = estadoDAO.listar();
+
+			cidades = cidadeDAO.listar();
+
+			Messages.addGlobalInfo("Cidade salva com sucesso");
+		} catch (RuntimeException erro) {
+			Messages.addFlashGlobalError("Ocorreu um erro ao tentar salvar uma nova cidade");
+			erro.printStackTrace();
+		}
+	}
+
+	public void excluir(javax.faces.event.ActionEvent evento) {
+		try {
+			cidade = (Cidade)  evento.getComponent().getAttributes().get("cidadeSelecionada");
+
+			CidadeDAO cidadeDAO = new CidadeDAO();
+			cidadeDAO.excluir(cidade);
+
+			cidades = cidadeDAO.listar();
+
+			Messages.addGlobalInfo("Cidade removida com sucesso");
+		} catch (RuntimeException erro) {
+			Messages.addFlashGlobalError("Ocorreu um erro ao tentar remover a cidade");
+			erro.printStackTrace();
+		}
+	}
+	
+	public void editar(javax.faces.event.ActionEvent evento){
+		try {
+			cidade = (Cidade) evento.getComponent().getAttributes().get("cidadeSelecionada");
+
+			EstadoDAO estadoDAO = new EstadoDAO();
+			estados = estadoDAO.listar();
+		} catch (RuntimeException erro) {
+			Messages.addFlashGlobalError("Ocorreu um erro ao tentar selecionar uma cidade");
+			erro.printStackTrace();
+		}	
+	}
+
 }
 
 

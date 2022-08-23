@@ -32,8 +32,9 @@
 		<!-- Cria as tabelas do banco de dados -->
 		<!-- create -->
 		
-		<!-- validate -->
-		<property name="hbm2ddl.auto">update</property>
+		<!-- validate validar os campos-->
+		<!-- update atualiza as tabelas-->
+		<property name="hbm2ddl.auto">validate</property>
 		
 		<!-- Mapeamento das tabelas -->
 		<mapping class="br.com.financeiro.domain.Estado" />

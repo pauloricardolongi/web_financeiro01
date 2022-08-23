@@ -2,6 +2,7 @@ package br.com.financeiro.test;
 
 import org.hibernate.Session;
 
+
 import org.junit.Test;
 
 import br.com.financeiro.util.HibernateUtil;

@@ -34,7 +34,7 @@ public class Pessoa extends GenericDomain {
 	private String complemento;
 	
 	@ManyToOne
-	@JoinColumn(nullable = true)
+	@JoinColumn(nullable = false)
 	private Cidade cidade;
 	
 	@Column(length = 13, nullable = false)

@@ -1,7 +1,10 @@
 package br.com.financeiro.domain;
 
 import javax.persistence.Column;
+
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @SuppressWarnings("serial")
 @Entity
@@ -30,6 +33,10 @@ public class Pessoa extends GenericDomain {
 	@Column(length = 10, nullable = false)
 	private String complemento;
 	
+	@ManyToOne
+	@JoinColumn(nullable = true)
+	private Cidade cidade;
+	
 	@Column(length = 13, nullable = false)
 	private String telefone;
 
@@ -38,6 +45,14 @@ public class Pessoa extends GenericDomain {
 	
 	@Column(length = 100, nullable = false)
 	private String email;
+	
+	public Cidade getCidade() {
+		return cidade;
+	}
+	
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
+	}
 
 	public String getNome() {
 		return nome;
